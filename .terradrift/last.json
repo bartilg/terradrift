@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "provider": "gcp",
+    "project": "powerful-axon-480921-k8",
+    "path": "/home/bart/Documents/github/terradrift/gcp-test",
+    "resource_types": [
+      "google_artifact_registry_repository",
+      "google_bigquery_dataset",
+      "google_cloud_run_v2_service",
+      "google_compute_instance",
+      "google_compute_network",
+      "google_compute_subnetwork",
+      "google_pubsub_topic",
+      "google_secret_manager_secret",
+      "google_service_account",
+      "google_storage_bucket"
+    ],
+    "ignore_defaults": true,
+    "version": "dev"
+  },
+  "expected_resources": [
+    {
+      "address": "google_artifact_registry_repository.containers",
+      "resource_type": "google_artifact_registry_repository",
+      "name": "containers",
+      "identity": {
+        "location": "us-central1",
+        "repository_id": "td-sample-repo"
+      },
+      "normalized": {
+        "description": "Terradrift sample repository",
+        "format": "DOCKER",
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "us-central1",
+        "repository_id": "td-sample-repo"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_bigquery_dataset.analytics",
+      "resource_type": "google_bigquery_dataset",
+      "name": "analytics",
+      "identity": {
+        "dataset_id": "td_analytics"
+      },
+      "normalized": {
+        "dataset_id": "td_analytics",
+        "friendly_name": "Terradrift Analytics",
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "US"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_cloud_run_v2_service.demo",
+      "resource_type": "google_cloud_run_v2_service",
+      "name": "demo",
+      "identity": {
+        "location": "us-central1",
+        "name": "demo-serverless-service"
+      },
+      "normalized": {
+        "container_image": "us-docker.pkg.dev/cloudrun/container/hello",
+        "ingress": "INGRESS_TRAFFIC_ALL",
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "us-central1",
+        "name": "demo-serverless-service"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_compute_instance.sample",
+      "resource_type": "google_compute_instance",
+      "name": "sample",
+      "identity": {
+        "name": "td-sample-vm",
+        "zone": "us-central1-a"
+      },
+      "normalized": {
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "machine_type": "e2-micro",
+        "name": "td-sample-vm",
+        "tags": [
+          "sample",
+          "terradrift"
+        ],
+        "zone": "us-central1-a"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_compute_network.sample",
+      "resource_type": "google_compute_network",
+      "name": "sample",
+      "identity": {
+        "name": "td-sample-network"
+      },
+      "normalized": {
+        "auto_create_subnetworks": false,
+        "name": "td-sample-network",
+        "routing_mode": "REGIONAL"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_compute_subnetwork.sample",
+      "resource_type": "google_compute_subnetwork",
+      "name": "sample",
+      "identity": {
+        "name": "td-sample-subnet",
+        "region": "us-central1"
+      },
+      "normalized": {
+        "ip_cidr_range": "10.42.0.0/24",
+        "name": "td-sample-subnet",
+        "private_ip_google_access": true,
+        "region": "us-central1"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_pubsub_topic.events",
+      "resource_type": "google_pubsub_topic",
+      "name": "events",
+      "identity": {
+        "name": "td-events-topic"
+      },
+      "normalized": {
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "name": "td-events-topic"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_secret_manager_secret.app",
+      "resource_type": "google_secret_manager_secret",
+      "name": "app",
+      "identity": {
+        "secret_id": "td-app-secret"
+      },
+      "normalized": {
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "replication": "automatic",
+        "secret_id": "td-app-secret"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_service_account.app",
+      "resource_type": "google_service_account",
+      "name": "app",
+      "identity": {
+        "email": "td-sample-app@940404789850.iam.gserviceaccount.com"
+      },
+      "normalized": {
+        "account_id": "td-sample-app",
+        "description": "Managed by the gcp-test Terradrift sample",
+        "disabled": false,
+        "display_name": "Terradrift Sample App"
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    },
+    {
+      "address": "google_storage_bucket.sample",
+      "resource_type": "google_storage_bucket",
+      "name": "sample",
+      "identity": {
+        "name": "940404789850-terradrift-sample-bucket"
+      },
+      "normalized": {
+        "labels": {
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "US",
+        "name": "940404789850-terradrift-sample-bucket",
+        "storage_class": "STANDARD",
+        "uniform_bucket_level_access": true,
+        "versioning_enabled": true
+      },
+      "raw": {
+        "file": "/home/bart/Documents/github/terradrift/gcp-test/main.tf"
+      }
+    }
+  ],
+  "observed_resources": [
+    {
+      "resource_type": "google_artifact_registry_repository",
+      "provider_id": "projects/powerful-axon-480921-k8/locations/us-central1/repositories/td-sample-repo",
+      "identity": {
+        "location": "us-central1",
+        "repository_id": "td-sample-repo"
+      },
+      "normalized": {
+        "description": "Terradrift sample repository",
+        "format": "DOCKER",
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "us-central1",
+        "repository_id": "td-sample-repo"
+      }
+    },
+    {
+      "resource_type": "google_bigquery_dataset",
+      "provider_id": "powerful-axon-480921-k8:td_analytics",
+      "identity": {
+        "dataset_id": "td_analytics"
+      },
+      "normalized": {
+        "dataset_id": "td_analytics",
+        "friendly_name": "Terradrift Analytics",
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "US"
+      }
+    },
+    {
+      "resource_type": "google_cloud_run_v2_service",
+      "provider_id": "projects/powerful-axon-480921-k8/locations/europe-west1/services/definitely-managed-cloud-function",
+      "identity": {
+        "location": "europe-west1",
+        "name": "definitely-managed-cloud-function"
+      },
+      "normalized": {
+        "container_image": "gcr.io/cloudrun/placeholder",
+        "ingress": "INGRESS_TRAFFIC_ALL",
+        "labels": {},
+        "location": "europe-west1",
+        "name": "definitely-managed-cloud-function",
+        "service_account": "940404789850-compute@developer.gserviceaccount.com"
+      }
+    },
+    {
+      "resource_type": "google_compute_instance",
+      "provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/zones/us-central1-a/instances/td-sample-vm",
+      "identity": {
+        "name": "td-sample-vm",
+        "zone": "us-central1-a"
+      },
+      "normalized": {
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "machine_type": "e2-micro",
+        "name": "td-sample-vm",
+        "tags": [
+          "sample",
+          "terradrift"
+        ],
+        "zone": "us-central1-a"
+      }
+    },
+    {
+      "resource_type": "google_compute_network",
+      "provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/global/networks/td-sample-network",
+      "identity": {
+        "name": "td-sample-network"
+      },
+      "normalized": {
+        "auto_create_subnetworks": false,
+        "name": "td-sample-network",
+        "routing_mode": "REGIONAL"
+      }
+    },
+    {
+      "resource_type": "google_compute_subnetwork",
+      "provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/regions/us-central1/subnetworks/td-sample-subnet",
+      "identity": {
+        "name": "td-sample-subnet",
+        "region": "us-central1"
+      },
+      "normalized": {
+        "ip_cidr_range": "10.42.0.0/24",
+        "name": "td-sample-subnet",
+        "network": "td-sample-network",
+        "private_ip_google_access": true,
+        "region": "us-central1"
+      }
+    },
+    {
+      "resource_type": "google_pubsub_topic",
+      "provider_id": "projects/powerful-axon-480921-k8/topics/td-events-topic",
+      "identity": {
+        "name": "td-events-topic"
+      },
+      "normalized": {
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "name": "td-events-topic"
+      }
+    },
+    {
+      "resource_type": "google_secret_manager_secret",
+      "provider_id": "projects/940404789850/secrets/td-app-secret",
+      "identity": {
+        "secret_id": "td-app-secret"
+      },
+      "normalized": {
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "replication": "automatic",
+        "secret_id": "td-app-secret"
+      }
+    },
+    {
+      "resource_type": "google_service_account",
+      "provider_id": "projects/powerful-axon-480921-k8/serviceAccounts/td-sample-app@940404789850.iam.gserviceaccount.com",
+      "identity": {
+        "email": "td-sample-app@940404789850.iam.gserviceaccount.com"
+      },
+      "normalized": {
+        "account_id": "td-sample-app",
+        "description": "Managed by the gcp-test Terradrift sample",
+        "disabled": false,
+        "display_name": "Terradrift Sample App",
+        "project": "powerful-axon-480921-k8"
+      }
+    },
+    {
+      "resource_type": "google_storage_bucket",
+      "provider_id": "projects/_/buckets/940404789850-terradrift-sample-bucket",
+      "identity": {
+        "name": "940404789850-terradrift-sample-bucket"
+      },
+      "normalized": {
+        "labels": {
+          "goog-terraform-provisioned": "true",
+          "managed_by": "terradrift",
+          "sample": "true"
+        },
+        "location": "US",
+        "name": "940404789850-terradrift-sample-bucket",
+        "storage_class": "STANDARD",
+        "uniform_bucket_level_access": true,
+        "versioning_enabled": true
+      }
+    }
+  ],
+  "matches": [
+    {
+      "expected_address": "google_artifact_registry_repository.containers",
+      "observed_provider_id": "projects/powerful-axon-480921-k8/locations/us-central1/repositories/td-sample-repo",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_bigquery_dataset.analytics",
+      "observed_provider_id": "powerful-axon-480921-k8:td_analytics",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_compute_instance.sample",
+      "observed_provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/zones/us-central1-a/instances/td-sample-vm",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_compute_network.sample",
+      "observed_provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/global/networks/td-sample-network",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_compute_subnetwork.sample",
+      "observed_provider_id": "https://www.googleapis.com/compute/v1/projects/powerful-axon-480921-k8/regions/us-central1/subnetworks/td-sample-subnet",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_pubsub_topic.events",
+      "observed_provider_id": "projects/powerful-axon-480921-k8/topics/td-events-topic",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_secret_manager_secret.app",
+      "observed_provider_id": "projects/940404789850/secrets/td-app-secret",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_service_account.app",
+      "observed_provider_id": "projects/powerful-axon-480921-k8/serviceAccounts/td-sample-app@940404789850.iam.gserviceaccount.com",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    },
+    {
+      "expected_address": "google_storage_bucket.sample",
+      "observed_provider_id": "projects/_/buckets/940404789850-terradrift-sample-bucket",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    }
+  ],
+  "findings": [
+    {
+      "id": "186d583ba370",
+      "resource_type": "google_cloud_run_v2_service",
+      "finding_type": "MISSING",
+      "severity": "HIGH",
+      "cause": "UNKNOWN",
+      "expected_address": "google_cloud_run_v2_service.demo",
+      "notes": [
+        "resource declared in Terraform was not found in GCP"
+      ],
+      "evidence": {
+        "classification_rule": "missing_resource"
+      }
+    },
+    {
+      "id": "2d8406b0e08f",
+      "resource_type": "google_cloud_run_v2_service",
+      "finding_type": "EXTRA",
+      "severity": "MEDIUM",
+      "cause": "LEGACY_ARTIFACT",
+      "observed_provider_id": "projects/powerful-axon-480921-k8/locations/europe-west1/services/definitely-managed-cloud-function",
+      "notes": [
+        "resource exists in GCP but is not represented in parsed Terraform intent"
+      ],
+      "evidence": {
+        "classification_rule": "extra_resource"
+      }
+    }
+  ]
+}

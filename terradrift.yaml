@@ -1,0 +1,18 @@
+env_file: "gcp-test/.env" # Path to env file for secrets
+project: "${GCP_PROJECT_ID}" # GCP Project to parse
+path: "gcp-test" # Path to Terraform configuration
+format: "text" # Scan Output format (text is default)
+fail_on: "never" #Don't fail on bad resources (CI Integration utility)
+ignore-defaults: true # Ignore Default resources for false positives
+resource_types: # What resources types to scan (ignore unsupported resources, resources expected to be modified manually)
+  - google_artifact_registry_repository
+  - google_bigquery_dataset
+  - google_compute_instance
+  - google_compute_network
+  - google_compute_subnetwork
+  - google_cloud_run_v2_service
+  - google_pubsub_topic
+  - google_secret_manager_secret
+  - google_storage_bucket
+  - google_service_account
+debug: false

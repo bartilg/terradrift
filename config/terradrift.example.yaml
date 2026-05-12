@@ -1,0 +1,18 @@
+env_file: ".env"
+project: "${GCP_PROJECT_ID}"
+path: "."
+format: "text"
+output: ""
+fail_on: "never"
+resource_types:
+  - google_artifact_registry_repository
+  - google_bigquery_dataset
+  - google_compute_instance
+  - google_compute_network
+  - google_compute_subnetwork
+  - google_cloud_run_v2_service
+  - google_pubsub_topic
+  - google_secret_manager_secret
+  - google_storage_bucket
+  - google_service_account
+debug: false

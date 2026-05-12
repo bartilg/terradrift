@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "provider": "gcp",
+    "project": "demo-project",
+    "path": "../../../testdata/fixtures/basic",
+    "resource_types": [
+      "google_storage_bucket",
+      "google_service_account"
+    ],
+    "version": "test-version"
+  },
+  "expected_resources": [
+    {
+      "address": "google_service_account.app",
+      "resource_type": "google_service_account",
+      "name": "app",
+      "identity": {
+        "email": "app-sa@demo-project.iam.gserviceaccount.com"
+      },
+      "normalized": {
+        "account_id": "app-sa",
+        "description": "Managed by Terraform",
+        "disabled": false,
+        "display_name": "App SA"
+      },
+      "raw": {
+        "file": "../../../testdata/fixtures/basic/main.tf"
+      }
+    },
+    {
+      "address": "google_service_account.computed",
+      "resource_type": "google_service_account",
+      "name": "computed",
+      "normalized": {
+        "description": "",
+        "disabled": false,
+        "display_name": ""
+      },
+      "raw": {
+        "file": "../../../testdata/fixtures/basic/main.tf"
+      }
+    },
+    {
+      "address": "google_storage_bucket.logs",
+      "resource_type": "google_storage_bucket",
+      "name": "logs",
+      "identity": {
+        "name": "td-logs-bucket"
+      },
+      "normalized": {
+        "labels": {
+          "env": "dev"
+        },
+        "location": "US",
+        "name": "td-logs-bucket",
+        "storage_class": "STANDARD",
+        "uniform_bucket_level_access": false,
+        "versioning_enabled": true
+      },
+      "raw": {
+        "file": "../../../testdata/fixtures/basic/main.tf"
+      }
+    }
+  ],
+  "observed_resources": [
+    {
+      "resource_type": "google_storage_bucket",
+      "provider_id": "projects/_/buckets/td-logs-bucket",
+      "identity": {
+        "name": "td-logs-bucket"
+      },
+      "normalized": {
+        "labels": {
+          "env": "prod"
+        },
+        "location": "US",
+        "name": "td-logs-bucket",
+        "storage_class": "STANDARD",
+        "uniform_bucket_level_access": false,
+        "versioning_enabled": true
+      }
+    },
+    {
+      "resource_type": "google_storage_bucket",
+      "provider_id": "projects/_/buckets/legacy-bucket",
+      "identity": {
+        "name": "legacy-bucket"
+      },
+      "normalized": {
+        "labels": {},
+        "location": "US",
+        "name": "legacy-bucket",
+        "storage_class": "STANDARD",
+        "uniform_bucket_level_access": false,
+        "versioning_enabled": false
+      }
+    },
+    {
+      "resource_type": "google_service_account",
+      "provider_id": "projects/demo-project/serviceAccounts/old-sa@demo-project.iam.gserviceaccount.com",
+      "identity": {
+        "email": "old-sa@demo-project.iam.gserviceaccount.com"
+      },
+      "normalized": {
+        "account_id": "old-sa",
+        "description": "legacy",
+        "disabled": false,
+        "display_name": "Old Service Account",
+        "project": "demo-project"
+      }
+    }
+  ],
+  "matches": [
+    {
+      "expected_address": "google_storage_bucket.logs",
+      "observed_provider_id": "projects/_/buckets/td-logs-bucket",
+      "confidence": "HIGH",
+      "reason": "canonical identity match"
+    }
+  ],
+  "findings": [
+    {
+      "id": "26becad04de9",
+      "resource_type": "google_service_account",
+      "finding_type": "MISSING",
+      "severity": "HIGH",
+      "cause": "UNKNOWN",
+      "expected_address": "google_service_account.app",
+      "notes": [
+        "resource declared in Terraform was not found in GCP"
+      ],
+      "evidence": {
+        "classification_rule": "missing_resource"
+      }
+    },
+    {
+      "id": "49ab9514093a",
+      "resource_type": "google_service_account",
+      "finding_type": "EXTRA",
+      "severity": "MEDIUM",
+      "cause": "LEGACY_ARTIFACT",
+      "observed_provider_id": "projects/demo-project/serviceAccounts/old-sa@demo-project.iam.gserviceaccount.com",
+      "notes": [
+        "resource exists in GCP but is not represented in parsed Terraform intent"
+      ],
+      "evidence": {
+        "classification_rule": "extra_resource"
+      }
+    },
+    {
+      "id": "8daa41faa639",
+      "resource_type": "google_service_account",
+      "finding_type": "UNKNOWN_INTENT",
+      "severity": "MEDIUM",
+      "cause": "TERRAFORM_COMPUTED",
+      "expected_address": "google_service_account.computed",
+      "notes": [
+        "identity cannot be resolved from literal Terraform values"
+      ],
+      "evidence": {
+        "classification_rule": "unknown_intent"
+      }
+    },
+    {
+      "id": "e4a9727eb43e",
+      "resource_type": "google_storage_bucket",
+      "finding_type": "MISMATCH",
+      "severity": "MEDIUM",
+      "cause": "MANUAL_CHANGE",
+      "expected_address": "google_storage_bucket.logs",
+      "observed_provider_id": "projects/_/buckets/td-logs-bucket",
+      "diff": [
+        {
+          "field": "labels",
+          "expected": {
+            "env": "dev"
+          },
+          "observed": {
+            "env": "prod"
+          }
+        }
+      ],
+      "notes": [
+        "only labels differ"
+      ],
+      "evidence": {
+        "classification_rule": "label_only"
+      }
+    },
+    {
+      "id": "f310f66b0864",
+      "resource_type": "google_storage_bucket",
+      "finding_type": "EXTRA",
+      "severity": "MEDIUM",
+      "cause": "LEGACY_ARTIFACT",
+      "observed_provider_id": "projects/_/buckets/legacy-bucket",
+      "notes": [
+        "resource exists in GCP but is not represented in parsed Terraform intent"
+      ],
+      "evidence": {
+        "classification_rule": "extra_resource"
+      }
+    }
+  ]
+}
