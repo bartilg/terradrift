@@ -36,7 +36,7 @@ instructions.md
 .codex
 
 # Terraform
-.Terraform
+.terraform/
 .terradrift
 *.tfstate
-
+*.tfstate.*
